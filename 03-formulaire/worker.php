@@ -1,5 +1,9 @@
 <?php
 
+sleep(3);
+
+header('Content-Type: application/json');
+
 // On vérifie que le formulaire a été soumis
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     // On récupère les champs du formulaire
@@ -23,8 +27,8 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
     // On vérifie si le formulaire contient des erreurs
     if (empty($errors)) {
-        echo 'Succès';
+        echo json_encode(['success' => 'Succès']);
     } else {
-        print_r($errors);
+        echo json_encode(['errors' => $errors]);
     }
 }
