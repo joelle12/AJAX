@@ -38,7 +38,9 @@
     </div>
 
 <h1></h1>
+<ul id="succès"></ul>
    
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -64,9 +66,13 @@
             beforeSend: function () {
                 $('h1').html('Chargement en cours...');
             },
+            complete: function (){
+                $('h1').html('');
+            }
         }).done(function (response) {
             if (response.success) {
-                $('h1').html(response.success);
+               var message = response.success;
+            $('ul').append($('<li>'+message.name+' : '+message.message+'</li>'));
             }
             
             if (response.errors) {
